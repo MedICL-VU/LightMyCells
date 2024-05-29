@@ -1,0 +1,65 @@
+Commands for Light Up My Cells
+==============================
+
+
+python -W ignore train.py --name uni_multi_decoder --dataroot /data/LightUp/Database --model light --batch_size 4 --dataset_mode unilight
+
+
+python -W ignore train.py --name lightv3 --dataroot /data/LightUp/Database --model lightv3 --batch_size 6 --continue_train --epoch_count 25 --num_threads 8
+
+python -W ignore train.py --name lightv4 --dataroot /data/LightUp/Database --model lightv4 --batch_size 6
+
+python -W ignore train.py --name BF_multi_decoder --dataroot /data/LightUp/Database --model lightv5 --batch_size 6 --input_modality BF 
+python -W ignore train.py --name PC_multi_decoder --dataroot /data/LightUp/Database --model lightv5 --batch_size 6 --input_modality PC
+python -W ignore train.py --name DIC_multi_decoder --dataroot /data/LightUp/Database --model lightv5 --batch_size 6 --input_modality DIC
+
+
+python -W ignore train.py --name BF_multi_decoder --dataroot /data/LightUp/Database --model unetpp --batch_size 4 --input_modality BF --num_threads 2 --no_html
+
+
+python -W ignore train.py --name dyn_unified --dataroot /data/LightUp/Database --model dynunetpp --dataset_mode unilight --batch_size 4 --num_threads 2 --no_html
+
+python -W ignore train.py --name dyn_unified --dataroot /data/LightUp/Database --model dynunetpp --dataset_mode unilight --batch_size 4 --num_threads 2 --no_html --continue_train --epoch_count 236
+
+
+====== test ========
+python -W ignore synthesize.py --name DIC_multi_decoder --dataroot /data/LightUp/Database --model lightv2 --input_modality DIC
+
+classifier
+
+python -W ignore train.py --name classifier --dataroot /data/LightUp/Database --dataset_mode classifier --model classifier --batch_size 64 --lr 1e-3 --n_epochs 50 --n_epochs_decay 50
+
+========= test =========
+
+python -W ignore classify.py --name classifier --model classifier --batch_size 1 
+
+
+docker:
+submit
+
+
+
+test-time augmentation
+
+model ensemble
+
+higher overlap
+
+
+
+- edge loss
+- perceptual loss
+- unet++
+
+
+actin: unified model
+
+
+more 
+- rotate 90
+- perceptual
+- edge loss
+
+- z-score (no)
+- batch normalization (no)
+- res 12 blocks (no)
